@@ -1,3 +1,10 @@
+Дата прохождения курса 22.06.2020
+
+Студент - Резе Татьяна
+
+Наставник - Павел Решетнев
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
