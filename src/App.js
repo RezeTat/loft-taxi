@@ -26,26 +26,22 @@ class App extends React.Component {
         <nav>
           <ul>
             <li>
-              <button>
-                onClick ={()=>{this.navigateTo("login")}}
+              <button onClick ={()=>{this.navigateTo("login")}}>
                 login
               </button>
             </li>
             <li>
-              <button>
-                onClick ={()=>{this.navigateTo("registration")}}
+              <button onClick ={()=>{this.navigateTo("registration")}}>
                 registration
               </button>
             </li>
             <li>
-              <button>
-                onClick ={()=>{this.navigateTo("profile")}}
+              <button onClick ={()=>{this.navigateTo("profile")}}>
                 profile
               </button>
             </li>
             <li>
-              <button>
-                onClick ={()=>{this.navigateTo("map")}}
+              <button onClick ={()=>{this.navigateTo("map")}}>
                 map
               </button>
             </li>
