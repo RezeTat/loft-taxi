@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
 import {Login} from './login'
 import {Registration} from './registration'
 import {Profile} from './profile'
@@ -7,14 +7,14 @@ import {Map} from './map'
 
 
 const PAGES = {
-  login:<Login/>,
-  registration:<Registration/>,
-  profile:<Profile/>,
-  map:<Map/>
+  login:()=><Login/>,
+  registration:()=><Registration/>,
+  profile:()=><Profile/>,
+  map:()=><Map/>
 }
 
 class App extends React.Component {
-  state = { CurrentPage: "map" };
+  state = { CurrentPage: "login" };
 
   navigateTo = (page) => {
     this.setState({ CurrentPage: page });
