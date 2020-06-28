@@ -7,14 +7,14 @@ import {Map} from './map'
 
 
 const PAGES = {
-  login:()=><Login/>,
-  registration:()=><Registration/>,
-  profile:()=><Profile/>,
-  map:()=><Map/>
-}
+  login:<Login/>,
+  registration:<Registration/>,
+  profile:<Profile/>,
+  map:<Map/>
+};
 
 class App extends React.Component {
-  state = { CurrentPage: "login" };
+  state = { CurrentPage: "map" };
 
   navigateTo = (page) => {
     this.setState({ CurrentPage: page });
