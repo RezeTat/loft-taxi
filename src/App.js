@@ -7,10 +7,10 @@ import {Map} from './map'
 
 
 const PAGES = {
-  login:<Login/>,
-  registration:<Registration/>,
-  profile:<Profile/>,
-  map:<Map/>
+  login:Login,
+  registration:Registration,
+  profile:Profile,
+  map:Map
 };
 
 class App extends React.Component {
@@ -21,6 +21,10 @@ class App extends React.Component {
   }
 
   render() {
+    const { CurrentPage } = this.state;
+    const Page = PAGES[CurrentPage];
+    console.log(Page)
+
     return<>
       <header>
         <nav>
@@ -45,13 +49,12 @@ class App extends React.Component {
                 map
               </button>
             </li>
-          </ul>
-
+          </ul> 
         </nav>
       </header>
       <main>
         <section>
-          {PAGES[this.state.CurrentPage]}
+        <Page navigateTo={this.navigateTo} />
         </section>
       </main>
       </>
