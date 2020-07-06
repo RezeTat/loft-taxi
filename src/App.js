@@ -1,29 +1,34 @@
 import React from 'react';
-// import './App.css';
-import {Login} from './login'
-import {Registration} from './registration'
-import {Profile} from './profile'
-import {Map} from './map'
+import PropTypes from "prop-types";
+import './App.css';
+import {withAuth} from './AuthContext';
+import {HomeWithAuth} from './login';
+import {Registration} from './registration';
+import {ProfileWithAuth} from './profile';
+import {Map} from './map';
 
 
 const PAGES = {
-  login:Login,
-  registration:Registration,
-  profile:Profile,
-  map:Map
+  login: (props) => <HomeWithAuth {...props}/>,
+  registration:(props) => <Registration {...props}/>,
+  profile:(props) => <ProfileWithAuth {...props}/>,
+  map:(props) => <Map {...props}/>
 };
 
 class App extends React.Component {
-  state = { CurrentPage: "map" };
+  state = { CurrentPage: "login" };
 
   navigateTo = (page) => {
+    if (this.props.isLoggedIn){
     this.setState({ CurrentPage: page });
-  }
+    } else{
+      this.setState({ CurrentPage: "login" });  
+    }
+  };
 
   render() {
     const { CurrentPage } = this.state;
     const Page = PAGES[CurrentPage];
-    console.log(Page)
 
     return<>
       <header>
@@ -54,11 +59,11 @@ class App extends React.Component {
       </header>
       <main>
         <section>
-        <Page navigateTo={this.navigateTo} />
+        <Page navigate={this.navigateTo} />
         </section>
       </main>
       </>
   }
 }
 
-export default App;
+export default withAuth(App);
