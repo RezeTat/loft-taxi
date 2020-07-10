@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import './App.css';
 import {withAuth} from './AuthContext';
 import {HomeWithAuth} from './login';
@@ -31,7 +30,7 @@ class App extends React.Component {
     const Page = PAGES[CurrentPage];
 
     return<>
-      <header>
+      {/* <header>
         <nav>
           <ul>
             <li>
@@ -56,7 +55,7 @@ class App extends React.Component {
             </li>
           </ul> 
         </nav>
-      </header>
+      </header> */}
       <main>
         <section>
         <Page navigate={this.navigateTo} />

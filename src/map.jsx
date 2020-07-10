@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import mapboxgl from 'mapbox-gl'
+import Header from './components/header'
 
 export class Map extends Component{
     map=null;
@@ -20,6 +21,7 @@ export class Map extends Component{
     }
     
     render(){
+        <Header navigateTo={this.props.navigateTo}/>
         return <div className="map-wrapper">
             <div data-testid="map" className="map" ref={this.mapContainer}></div>
         </div>

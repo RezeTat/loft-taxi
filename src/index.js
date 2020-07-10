@@ -10,9 +10,7 @@ import { AuthProvider } from './AuthContext';
 ReactDOM.render(
   <React.StrictMode>
     <MuiThemeProvider theme={theme}>
-      <AuthProvider>
         <App />
-      </AuthProvider>
       </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
