@@ -5,7 +5,6 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { AuthProvider } from './AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>

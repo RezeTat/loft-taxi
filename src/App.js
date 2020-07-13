@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
 import {withAuth} from './AuthContext';
-import {HomeWithAuth} from './login';
+import {LoginWithAuth} from './login';
 import {Registration} from './registration';
 import {ProfileWithAuth} from './profile';
 import {Map} from './map';
+// import {Profile} from './profile'
+import Header from './components/header'
 
 
 const PAGES = {
-  login: (props) => <HomeWithAuth {...props}/>,
+  login: (props) => <LoginWithAuth {...props}/>,
   registration:(props) => <Registration {...props}/>,
   profile:(props) => <ProfileWithAuth {...props}/>,
   map:(props) => <Map {...props}/>
@@ -18,11 +20,11 @@ class App extends React.Component {
   state = { CurrentPage: "login" };
 
   navigateTo = (page) => {
-    if (this.props.isLoggedIn){
+    // if (this.props.isLoggedIn){
     this.setState({ CurrentPage: page });
-    } else{
-      this.setState({ CurrentPage: "login" });  
-    }
+    // } else{
+    //   this.setState({ CurrentPage: "login" });  
+    // }
   };
 
   render() {
@@ -30,35 +32,12 @@ class App extends React.Component {
     const Page = PAGES[CurrentPage];
 
     return<>
-      {/* <header>
-        <nav>
-          <ul>
-            <li>
-              <button onClick ={()=>{this.navigateTo("login")}}>
-                login
-              </button>
-            </li>
-            <li>
-              <button onClick ={()=>{this.navigateTo("registration")}}>
-                registration
-              </button>
-            </li>
-            <li>
-              <button onClick ={()=>{this.navigateTo("profile")}}>
-                profile
-              </button>
-            </li>
-            <li>
-              <button onClick ={()=>{this.navigateTo("map")}}>
-                map
-              </button>
-            </li>
-          </ul> 
-        </nav>
-      </header> */}
+      {/* {
+        this.props.isLoggedIn && <Header navigateTo={this.props.navigate}/>
+      } */}
       <main>
         <section>
-        <Page navigate={this.navigateTo} />
+        <Page navigateTo={this.navigateTo} />
         </section>
       </main>
       </>

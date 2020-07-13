@@ -6,7 +6,7 @@ export const AuthProvider = ({children}) => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const logIn = (email, password) => {
-    if (email !== "valid@email.com" || password !== "correctpassword") {
+    if (email !== "valid@email.com" || password !== "000"){
       return;
     }
     setIsLoggedIn(true);
@@ -22,7 +22,6 @@ export const AuthProvider = ({children}) => {
     </AuthContext.Provider>
   );
 };
-
 export const withAuth = (WrappedComponent) => {
   return class extends React.Component {
     render() {

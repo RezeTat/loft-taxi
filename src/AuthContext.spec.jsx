@@ -23,7 +23,7 @@ describe("AuthContext", () => {
 
       expect(isLoggedIn).toBe(false);
       act(() => {
-        logIn("valid@email.com", "correctpassword");
+        logIn("valid@email.com", "000");
       })
       expect(isLoggedIn).toBe(true);
     });
@@ -49,7 +49,7 @@ describe("AuthContext", () => {
       );
 
       act(() => {
-        logIn("valid@email.com", "correctpassword");
+        logIn("valid@email.com", "000");
         logOut();
       });
 

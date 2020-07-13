@@ -21,9 +21,11 @@ export class Map extends Component{
     }
     
     render(){
-        <Header navigateTo={this.props.navigateTo}/>
-        return <div className="map-wrapper">
-            <div data-testid="map" className="map" ref={this.mapContainer}></div>
-        </div>
+        return <sections>
+            <Header navigateTo={this.props.navigateTo}/>
+            <div className="map-wrapper">
+                <div data-testid="map" className="map" ref={this.mapContainer}></div>
+            </div>
+        </sections>
     }
 }

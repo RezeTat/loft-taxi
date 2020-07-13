@@ -2,31 +2,25 @@ import React, { Component } from 'react';
 
 
 class Header extends Component{
-    navigateTo = (page) => {
-        if (this.props.isLoggedIn){
-        this.setState({ CurrentPage: page });
-        } else{
-          this.setState({ CurrentPage: "login" });  
-        }
-      };
+
     render(){
         return<>
             <header className='header'>
-                <img src='logo' className='logo'/>
+                <img src='logo' className='logoHeader'/>
                 <nav className='topNav'>
                     <ul>
                         <li>
-                            <button onClick ={()=>{this.navigateTo("map")}}>
+                            <button onClick ={()=>{this.props.navigateTo("map")}}>
                             Карта
                             </button>
                         </li>
                         <li>
-                            <button onClick ={()=>{this.navigateTo("profile")}}>
+                            <button onClick ={()=>{this.props.navigateTo("profile")}}>
                             Профиль
                             </button>
                         </li>
                         <li>
-                            <button onClick ={()=>{this.navigateTo("login")}}>
+                            <button onClick ={()=>{this.props.navigateTo("login")}}>
                             Выйти
                             </button>
                         </li>

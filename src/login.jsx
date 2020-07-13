@@ -1,43 +1,78 @@
 import React, { Component } from 'react'
 import { withAuth } from './AuthContext';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import './login.css'
 
 export class Login extends Component{
     goToProfile =() => {
-        this.props.navigate("profile")
+        this.props.navigateTo("profile")
     };
 
-    authenticate = (event) =>{
+    authenticate = (event)=>{
         event.preventDefault()
         const {email, password} = event.target;
         this.props.logIn(email.value, password.value)
     };
 
     goToRegistration=()=>{
-        this.props.navigate("registration")
+        this.props.navigateTo("registration")
     };
-
     render() {
         return (
             <>
-            {
-                <p>Новый пользователь? <button onClick={this.goToRegistration}>Зарегистрируйтесь</button></p>
-            }
-            {
-                
-                this.props.isLoggedIn ? (
-                    <p>
-                    Вы в системе <button onClick={this.goToProfile}>В профиль</button>
-                    </p>
-                ) : (
-                    <form onSubmit={this.authenticate}>
-                        <label htmlFor="email">Email:</label>
-                        <input id="email" type="email" name="email" size="28" />    
-                        <label htmlFor="password">Пароль:</label>
-                        <input id="password" type="password" name="password" size="28"/>
-                        <button type='submit'>Войти</button>
-                    </form>
-                )
-            }
+            <div className='login'>
+                <div className='formBox'>
+                    <div className="logo">
+                        <div className="logo__image"></div>
+                    </div>
+                {
+                    this.props.isLoggedIn ? (
+                        <p>
+                        Вы в системе <button onClick={this.goToProfile}>В профиль</button>
+                        </p>
+                    ) : (
+                        <form className="loginForm" onSubmit={this.authenticate} > 
+                            <h1>Войти</h1>
+                            <p>Новый пользователь? 
+                            <Link href="#" onClick={this.goToRegistration}>
+                            Зарегистрируйтесь
+                            </Link>
+                            </p>
+                            <TextField
+                                margin="normal"
+                                // required
+                                fullWidth
+                                id="email"
+                                label="Имя пользователя"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                            />
+                            <TextField                           
+                                margin="normal"
+                                // required
+                                fullWidth
+                                name="password"
+                                label="Пароль"
+                                type="password"
+                                id="password"
+                                // autoComplete="current-password"
+                            />
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                className='buttonSubmit'
+                            >
+                                Войти
+                            </Button>
+                        </form>
+                    )
+                }
+                </div>
+                </div>
             
             </>
         );
@@ -45,4 +80,4 @@ export class Login extends Component{
     
 }
 
-export const HomeWithAuth = withAuth(Login)
+export const LoginWithAuth = withAuth(Login)
