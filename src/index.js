@@ -5,12 +5,15 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { AuthProvider } from './AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MuiThemeProvider theme={theme}>
-        <App />
+    <AuthProvider>
+      <MuiThemeProvider theme={theme}>
+          <App />
       </MuiThemeProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import PropTypes from "prop-types";
 import {withAuth} from './AuthContext';
 import {LoginWithAuth} from './login';
 import {Registration} from './registration';
@@ -32,9 +33,9 @@ class App extends React.Component {
     const Page = PAGES[CurrentPage];
 
     return<>
-      {/* {
+      {
         this.props.isLoggedIn && <Header navigateTo={this.props.navigate}/>
-      } */}
+      }
       <main>
         <section>
         <Page navigateTo={this.navigateTo} />
@@ -43,5 +44,9 @@ class App extends React.Component {
       </>
   }
 }
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+};
 
 export default withAuth(App);

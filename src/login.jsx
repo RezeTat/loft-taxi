@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withAuth } from './AuthContext';
+import PropTypes from "prop-types";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -8,6 +9,9 @@ import './login.css'
 export class Login extends Component{
     goToProfile =() => {
         this.props.navigateTo("profile")
+    };
+    goToMap =() => {
+        this.props.navigateTo("map")
     };
 
     authenticate = (event)=>{
@@ -31,6 +35,8 @@ export class Login extends Component{
                     this.props.isLoggedIn ? (
                         <p>
                         Вы в системе <button onClick={this.goToProfile}>В профиль</button>
+                        
+                        Карта <button onClick={this.goToMap}>Карта</button>
                         </p>
                     ) : (
                         <form className="loginForm" onSubmit={this.authenticate} > 
@@ -79,5 +85,10 @@ export class Login extends Component{
     }
     
 }
+
+Login.propTypes = {
+    isLoggedIn: PropTypes.bool,
+    logIn: PropTypes.func,
+  };
 
 export const LoginWithAuth = withAuth(Login)
