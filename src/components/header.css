@@ -1,0 +1,30 @@
+
+.logoHeader{
+    background-image: url(./../images/logo.png);
+}
+
+.header{
+    display: flex;
+}
+
+.topNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80px;
+    z-index: 10;
+    margin: 0 0 auto auto;
+}
+
+.navList{
+    display: flex;
+    flex-direction: row;
+}
+
+.header__item {
+    margin-right: 25px;
+}
+
+.header__item:last-child {
+        margin-right: 0;
+}

@@ -1,4 +1,10 @@
 import React from 'react'
+import './registration.css'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+
 
 export const Registration = (props)=>{
 
@@ -6,19 +12,87 @@ export const Registration = (props)=>{
         const { navigateTo } = props;
         e.preventDefault();
         navigateTo('map');
-    }
+    };
+    const goToLogin=e=> {
+        const {navigateTo} = props;
+        e.preventDefault();
+        navigateTo("login");
+    };
         return <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Адрес электронной почты</label>
-                <input id="email" type="email" name="email" size="28"/>
-                <label htmlFor="name">Имя</label>
-                <input id="name" type="text" name="name" size="28"/>
-                <label htmlFor="lastname">Фамилия</label>
-                <input id="lastname" type="text" name="lastname" size="28"/>
-                <label htmlFor="password">Пароль</label>
-                <input id="password" type="text" name="password" size="28"/>
-                <button type='submit'>Зарегистрироваться</button>
-            </form>
+            <div className='registration'>
+                    <div className="formBox">
+                        <div className="logo">
+                            <div className="logo__image"></div>
+                        </div>
+                        <form className='loginForm' onSubmit={handleSubmit}>
+                        <h1>Регистрация</h1>
+                        <Grid container justify="flex-start">
+                            <Grid item>
+                                <p>Уже зарегистрирован? 
+                                    <Link href="#" variant="body2" onClick={goToLogin}>
+                                    Войти
+                                    </Link>
+                                </p>
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Адрес электронной почты"
+                                    name="email"
+                                    autoComplete="email"
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                            <TextField
+                                autoComplete="fname"
+                                name="firstName"
+                                required
+                                fullWidth
+                                id="firstName"
+                                label="Имя"
+                                autoFocus
+                            />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                            <TextField
+                                required
+                                fullWidth
+                                id="lastName"
+                                label="Фамилия"
+                                name="lastName"
+                                autoComplete="lname"
+                            />
+                            </Grid>
+                            <Grid item xs={12}>
+                            <TextField
+                                
+                                required
+                                fullWidth
+                                name="password"
+                                label="Пароль"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                            />
+                            </Grid>
+                            
+                            
+                        </Grid>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                className="submit"
+                            >
+                                Зарегистрироваться
+                            </Button>
+                        </form>
+                    </div>
+            </div>
             </>
 };
 
