@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withAuth} from './../AuthContext';
 import AppBar  from '@material-ui/core/AppBar';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
@@ -50,5 +51,5 @@ class Header extends Component{
 }
             
 
-export default Header;
+export default withAuth (Header);
      

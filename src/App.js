@@ -34,7 +34,7 @@ class App extends React.Component {
 
     return<>
       {
-        this.props.isLoggedIn && <Header navigateTo={this.props.navigate}/>
+        this.props.isLoggedIn && <Header navigateTo={this.navigateTo}/>
       }
       <main>
         <section>
