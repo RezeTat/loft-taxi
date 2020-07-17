@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { withAuth } from './AuthContext';
+import {connect} from 'react-redux'
+import {authenticate} from './actions'
 import PropTypes from "prop-types";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,22 +8,13 @@ import Link from '@material-ui/core/Link';
 import './login.css'
 
 export class Login extends Component{
-    goToProfile =() => {
-        this.props.navigateTo("profile")
-    };
-    goToMap =() => {
-        this.props.navigateTo("map")
-    };
 
     authenticate = (event)=>{
         event.preventDefault()
         const {email, password} = event.target;
-        this.props.logIn(email.value, password.value)
+        this.props.authenticate(email.value, password.value)
     };
 
-    goToRegistration=()=>{
-        this.props.navigateTo("registration")
-    };
     render() {
         return (
             <>
@@ -34,15 +26,13 @@ export class Login extends Component{
                 {
                     this.props.isLoggedIn ? (
                         <p>
-                        Вы в системе <button onClick={this.goToProfile}>В профиль</button>
-                        
-                        Карта <button onClick={this.goToMap}>Карта</button>
+                        Вы в системе <Link to='/Profile'>В профиль</Link>
                         </p>
                     ) : (
                         <form className="loginForm" onSubmit={this.authenticate} > 
                             <h1>Войти</h1>
                             <p>Новый пользователь? 
-                            <Link href="#" onClick={this.goToRegistration}>
+                            <Link href="#" to='/Regestration'>
                             Зарегистрируйтесь
                             </Link>
                             </p>
@@ -91,4 +81,7 @@ Login.propTypes = {
     logIn: PropTypes.func,
   };
 
-export const LoginWithAuth = withAuth(Login)
+export const LoginWithConnect = connect(
+    (state)=> ({isLoggedIn:state.auth.isLoggedIn}),
+    {authenticate}
+)(Login)

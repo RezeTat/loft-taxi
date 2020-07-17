@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {withAuth} from './AuthContext';
+import {connect} from 'react-redux';
+import {logOut} from './actions'
 import './profile.css';
 import {MCIcon} from 'loft-taxi-mui-theme';
 import Grid from '@material-ui/core/Grid';
@@ -85,4 +86,7 @@ export class Profile extends Component{
 }
 
 
-export const ProfileWithAuth = withAuth(Profile)
+export const ProfileWithConnect = connect(
+    null,
+    {logOut}
+)(Profile)

@@ -1,22 +1,19 @@
 import React from 'react'
+import {connect} from 'react-redux';
 import './registration.css'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import {registration} from './actions'
+
 
 
 export const Registration = (props)=>{
 
     const handleSubmit=e=> {
-        const { navigateTo } = props;
         e.preventDefault();
-        navigateTo('map');
-    };
-    const goToLogin=e=> {
-        const {navigateTo} = props;
-        e.preventDefault();
-        navigateTo("login");
+        registration(email,password,name,surname);
     };
         return <>
             <div className='registration'>
@@ -29,7 +26,7 @@ export const Registration = (props)=>{
                         <Grid container justify="flex-start">
                             <Grid item>
                                 <p>Уже зарегистрирован? 
-                                    <Link href="#" variant="body2" onClick={goToLogin}>
+                                    <Link href="#" variant="body2" to='/'>
                                     Войти
                                     </Link>
                                 </p>
@@ -48,11 +45,11 @@ export const Registration = (props)=>{
                             </Grid>
                             <Grid item xs={12} sm={6}>
                             <TextField
-                                autoComplete="fname"
-                                name="firstName"
+                                autoComplete="name"
+                                name="name"
                                 required
                                 fullWidth
-                                id="firstName"
+                                id="name"
                                 label="Имя"
                                 autoFocus
                             />
@@ -61,10 +58,10 @@ export const Registration = (props)=>{
                             <TextField
                                 required
                                 fullWidth
-                                id="lastName"
+                                id="surname"
                                 label="Фамилия"
-                                name="lastName"
-                                autoComplete="lname"
+                                name="surname"
+                                autoComplete="surname"
                             />
                             </Grid>
                             <Grid item xs={12}>
@@ -96,3 +93,7 @@ export const Registration = (props)=>{
             </>
 };
 
+export default connect(
+    null,
+    { registration }
+)(Registration);
