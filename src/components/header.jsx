@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import AppBar  from '@material-ui/core/AppBar';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import {Logo} from 'loft-taxi-mui-theme';
 import './header.css';
 import {logOut} from './../actions'
+import { Link } from "react-router-dom";
 
 
 class Header extends Component{

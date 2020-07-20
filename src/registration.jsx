@@ -3,17 +3,28 @@ import {connect} from 'react-redux';
 import './registration.css'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import {registration} from './actions'
 
 
 
-export const Registration = (props)=>{
 
+export const Registration = (props)=>{
+    const [userInfo, setUserInfo] = React.useState({
+		email: "",
+        password: "",
+        name: "",
+        surname: ""
+    });
+    const onChangeInput = (e) => {
+        const input = e.target;
+        const setUserInfo=({...userInfo, [input.name]: [input.value] })
+    };
     const handleSubmit=e=> {
         e.preventDefault();
-        registration(email,password,name,surname);
+        registration(userInfo.email,userInfo.password,userInfo.name,userInfo.surname);
     };
         return <>
             <div className='registration'>
@@ -41,6 +52,8 @@ export const Registration = (props)=>{
                                     label="Адрес электронной почты"
                                     name="email"
                                     autoComplete="email"
+                                    value={userInfo.email} 
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -66,7 +79,6 @@ export const Registration = (props)=>{
                             </Grid>
                             <Grid item xs={12}>
                             <TextField
-                                
                                 required
                                 fullWidth
                                 name="password"

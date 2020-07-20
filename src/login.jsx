@@ -4,7 +4,7 @@ import {authenticate} from './actions'
 import PropTypes from "prop-types";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import './login.css'
 
 export class Login extends Component{
@@ -56,14 +56,16 @@ export class Login extends Component{
                                 id="password"
                                 // autoComplete="current-password"
                             />
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                className='buttonSubmit'
-                            >
-                                Войти
-                            </Button>
+                            <div align='right'>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    className='buttonSubmit'
+                                >
+                                    Войти
+                                </Button>
+                            </div>
                         </form>
                     )
                 }

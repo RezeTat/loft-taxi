@@ -7,12 +7,13 @@ export const registration = (store) => (next) => async (action) => {
     const {email,password,name,surname} = action.payload;
     const success = await serverRegistration(email,password,name,surname)
     if(success){
-      store.dispatch(logIn());
-      localStorage.setItem
-      ('email',
-      'password',
-      'name',
-      'surname')
+      store.dispatch(action);
+      localStorage.setItem(
+        'email',
+        'password',
+        'name',
+        'surname'
+        )
     }
   } else {
     next(action);
