@@ -21,7 +21,7 @@ export const Profile=(props)=>{
     });
     const onChangeInput = (e) => {
         const input = e.target;
-        const setcardInfo=({...cardInfo, [input.name]: [input.value] })
+        setcardInfo({...cardInfo, [input.name]: [input.value] })
     };
     const handleSubmit=e=> {
         e.preventDefault();

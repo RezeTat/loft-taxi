@@ -18,14 +18,16 @@ export const Registration = (props)=>{
         name: "",
         surname: ""
     });
+    
     const onChangeInput = (e) => {
         const input = e.target;
-        const setUserInfo=({...userInfo, [input.name]: [input.value] })
+        setUserInfo({...userInfo, [input.name]: [input.value] })
     };
     const handleSubmit=e=> {
         e.preventDefault();
         registration(userInfo.email,userInfo.password,userInfo.name,userInfo.surname);
     };
+
         return <>
             <div className='registration'>
                     <div className="formBox">
@@ -52,6 +54,7 @@ export const Registration = (props)=>{
                                     label="Адрес электронной почты"
                                     name="email"
                                     autoComplete="email"
+                                    autoFocus
                                     value={userInfo.email} 
                                     onChange={onChangeInput}
                                 />
@@ -65,6 +68,8 @@ export const Registration = (props)=>{
                                 id="name"
                                 label="Имя"
                                 autoFocus
+                                value={userInfo.name} 
+                                onChange={onChangeInput}
                             />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -75,6 +80,9 @@ export const Registration = (props)=>{
                                 label="Фамилия"
                                 name="surname"
                                 autoComplete="surname"
+                                autoFocus
+                                value={userInfo.surname} 
+                                onChange={onChangeInput}
                             />
                             </Grid>
                             <Grid item xs={12}>
@@ -86,6 +94,10 @@ export const Registration = (props)=>{
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                autoFocus
+                                value={userInfo.password} 
+                                onChange={onChangeInput}
+
                             />
                             </Grid>
                             

@@ -1,11 +1,8 @@
 import {REGISTRATION} from './../actions'
 
 const initialState = {
-    // email: localStorage.getItem(email=''),
     email:'',
     password:'',
-    // name: localStorage.getItem(name=''),
-    // surname:localStorage.getItem(surname='')
     name:'',
     surname:''
 }

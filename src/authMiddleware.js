@@ -5,9 +5,13 @@ import {AUTHENTICATE} from './actions'
 export const auth = (store) => (next) => async (action) => {
   if (action.type === AUTHENTICATE) {
     const {email, password} = action.payload;
-    const success = await serverLogIn(email, password)
+    const {success,token} = await serverLogIn(email, password)
     if(success){
-      store.dispatch(logIn(auth.token))
+      store.dispatch(logIn(token))
+      localStorage.setItem(JSON.stringify({
+        email,
+        password
+      }))
     }
   } else {
     next(action);

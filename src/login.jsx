@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from './actions'
 import PropTypes from "prop-types";
@@ -7,15 +7,30 @@ import TextField from '@material-ui/core/TextField';
 import {Link} from 'react-router-dom';
 import './login.css'
 
-export class Login extends Component{
 
-    authenticate = (event)=>{
-        event.preventDefault()
-        const {email, password} = event.target;
-        this.props.authenticate(email.value, password.value)
+
+const Login =(props)=>{
+
+    const [loginInfo, setloginInfo] = React.useState({
+		email:'',
+        password:""
+    });
+
+    const authenticate = (e)=>{
+        e.preventDefault()
+        const {email, password} = e.target;
+        props.authenticate(email.value, password.value)
     };
 
-    render() {
+    const onChangeInput = e => {
+        const input = e.target;
+        setloginInfo({...loginInfo, [input.name]: [input.value] })
+    };
+
+    const handleSubmit=e=> {
+        e.preventDefault();
+        authenticate(loginInfo.email,loginInfo.password);
+    };
         return (
             <>
             <div className='login'>
@@ -24,37 +39,41 @@ export class Login extends Component{
                         <div className="logo__image"></div>
                     </div>
                 {
-                    this.props.isLoggedIn ? (
+                    props.isLoggedIn ? (
                         <p>
                         Вы в системе <Link to='/Profile'>В профиль</Link>
                         </p>
                     ) : (
-                        <form className="loginForm" onSubmit={this.authenticate} > 
+                        <form className="loginForm" onSubmit={handleSubmit} > 
                             <h1>Войти</h1>
                             <p>Новый пользователь? 
-                            <Link href="#" to='/Regestration'>
+                            <Link href="#" to='/Registration'>
                             Зарегистрируйтесь
                             </Link>
                             </p>
                             <TextField
                                 margin="normal"
-                                // required
+                                required
                                 fullWidth
                                 id="email"
                                 label="Имя пользователя"
-                                name="email"
                                 autoComplete="email"
                                 autoFocus
+                                value={loginInfo.email}
+                                name="email"
+                                onChange={onChangeInput}
                             />
                             <TextField                           
                                 margin="normal"
-                                // required
+                                required
                                 fullWidth
                                 name="password"
                                 label="Пароль"
                                 type="password"
                                 id="password"
-                                // autoComplete="current-password"
+                                value={loginInfo.password} 
+                                onChange={onChangeInput}
+                                autoComplete="current-password"
                             />
                             <div align='right'>
                                 <Button
@@ -74,9 +93,9 @@ export class Login extends Component{
             
             </>
         );
-    }
-    
 }
+    
+
 
 Login.propTypes = {
     isLoggedIn: PropTypes.bool,
