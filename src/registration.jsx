@@ -103,7 +103,7 @@ export const Registration = (props)=>{
                             
                             
                         </Grid>
-                            <Button
+                            <Button 
                                 type="submit"
                                 variant="contained"
                                 color="primary"
@@ -117,7 +117,7 @@ export const Registration = (props)=>{
             </>
 };
 
-export default connect(
+export const RegistrationWithConnect= connect(
     null,
     { registration }
 )(Registration);

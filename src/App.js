@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {PrivateRoute} from './PrivateRoute';
 import {Switch , Route} from 'react-router-dom';
 import {LoginWithConnect} from './login';
-import {Registration} from './registration';
+import {RegistrationWithConnect} from './registration';
 import {ProfileWithConnect} from './profile';
 import {Map} from './map';
 // import {Profile} from './profile'
@@ -25,7 +25,7 @@ class App extends React.Component {
             <Route exact path ='/' component ={LoginWithConnect}/>
             <PrivateRoute  path ='/map' component ={Map}/>
             <PrivateRoute path="/profile" component={ProfileWithConnect} />
-            <Route exact path ='/registration' component ={Registration}/>
+            <Route exact path ='/registration' component ={RegistrationWithConnect}/>
           </Switch>
         </section>
       </main>

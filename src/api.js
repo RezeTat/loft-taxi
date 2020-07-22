@@ -5,10 +5,10 @@ export const serverLogIn = async (email, password) => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         email,
-        password})
+        password,
+        })
     })
     .then(res => res.json())
-    .then(data => data.success);
 };
 
 export const serverRegistration = async (email,password,name,surname) => {
@@ -23,7 +23,6 @@ export const serverRegistration = async (email,password,name,surname) => {
     })
   })
   .then(res => res.json())
-  .then(data => data.success);
 };
 
 
