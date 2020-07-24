@@ -11,7 +11,7 @@ import './login.css'
 
 export const Login =(props)=>{
 
-    const [loginInfo, setloginInfo] = React.useState({
+    const [loginInfo, setLoginInfo] = React.useState({
 		email:'',
         password:""
     });
@@ -24,12 +24,12 @@ export const Login =(props)=>{
 
     const onChangeInput = e => {
         const input = e.target;
-        setloginInfo({...loginInfo, [input.name]: [input.value] })
+        setLoginInfo({ ...loginInfo, [input.name]: input.value })
     };
 
     const handleSubmit=e=> {
         e.preventDefault();
-        authenticate(loginInfo.email,loginInfo.password);
+        props.authenticate(loginInfo.email,loginInfo.password);
     };
         return (
             <>

@@ -8,7 +8,7 @@ export const registration = (store) => (next) => async (action) => {
     const {success,token} = await serverRegistration(email,password,name,surname)
     if(success){
       store.dispatch(logIn(token));
-      localStorage.setItem(JSON.stringify({
+      localStorage.setItem('reg',JSON.stringify({
         email,
         password,
         name,

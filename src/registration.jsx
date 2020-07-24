@@ -25,7 +25,7 @@ export const Registration = (props)=>{
     };
     const handleSubmit=e=> {
         e.preventDefault();
-        registration(userInfo.email,userInfo.password,userInfo.name,userInfo.surname);
+        props.registration(userInfo.email,userInfo.password,userInfo.name,userInfo.surname);
     };
 
         return <>
@@ -103,7 +103,7 @@ export const Registration = (props)=>{
                             
                             
                         </Grid>
-                            <Button 
+                            <Button
                                 type="submit"
                                 variant="contained"
                                 color="primary"

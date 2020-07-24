@@ -8,9 +8,8 @@ export const auth = (store) => (next) => async (action) => {
     const {success,token} = await serverLogIn(email, password)
     if(success){
       store.dispatch(logIn(token))
-      localStorage.setItem(JSON.stringify({
-        email,
-        password
+      localStorage.setItem('user',JSON.stringify({
+        token
       }))
     }
   } else {

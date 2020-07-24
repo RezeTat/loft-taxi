@@ -9,7 +9,7 @@ export const profile = (store) => (next) => async (action) => {
     const success = await serverCard(cardNumber,expiryDate,cardName,cvc,token)
     if(success){
       store.dispatch(action);
-      localStorage.setItem(JSON.stringify({
+      localStorage.setItem('card',JSON.stringify({
         cardNumber,
         expiryDate,
         cardName,

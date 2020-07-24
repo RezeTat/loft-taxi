@@ -9,23 +9,28 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent'; 
 import Typography from '@material-ui/core/Typography';
-import {profile} from './actions'
-
+import {profile} from './actions';
 
 export const Profile=(props)=>{
-    const [cardInfo, setcardInfo] = React.useState({
+
+    // const token = JSON.parse(localStorage.getItem('user'));
+    // const token = alert( localStorage.getItem('user') )
+    const [cardInfo, setCardInfo] = React.useState({
 		cardNumber: "",
         expiryDate: "",
         cardName: "",
-        cvc: ""
+        cvc: "",
+        token:  ""
     });
+
+        
     const onChangeInput = (e) => {
         const input = e.target;
-        setcardInfo({...cardInfo, [input.name]: [input.value] })
+        setCardInfo({...cardInfo, [input.name]: [input.value] })
     };
     const handleSubmit=e=> {
         e.preventDefault();
-        profile(cardInfo.cardNumber,cardInfo.expiryDate,cardInfo.cardName,cardInfo.cvc);
+        profile(cardInfo.cardNumber,cardInfo.expiryDate,cardInfo.cardName,cardInfo.cvc,cardInfo.token );
     };
         return(
         <>
@@ -119,8 +124,13 @@ export const Profile=(props)=>{
     
 }
 
+const mapStateToProps = (state) => ({
+        return:{
+            token: state.auth.token
+        }
+});
 
 export const ProfileWithConnect = connect(
-    null,
+    mapStateToProps,
     {logOut}
 )(Profile)
