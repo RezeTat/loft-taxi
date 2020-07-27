@@ -1,44 +1,32 @@
 import React from 'react';
 import './App.css';
 import PropTypes from "prop-types";
-import {withAuth} from './AuthContext';
-import {LoginWithAuth} from './login';
-import {Registration} from './registration';
-import {ProfileWithAuth} from './profile';
+import {connect} from 'react-redux';
+import {PrivateRoute} from './PrivateRoute';
+import {Switch , Route} from 'react-router-dom';
+import {LoginWithConnect} from './login';
+import {RegistrationWithConnect} from './registration';
+import {ProfileWithConnect} from './profile';
 import {Map} from './map';
 // import {Profile} from './profile'
 import Header from './components/header'
 
 
-const PAGES = {
-  login: (props) => <LoginWithAuth {...props}/>,
-  registration:(props) => <Registration {...props}/>,
-  profile:(props) => <ProfileWithAuth {...props}/>,
-  map:(props) => <Map {...props}/>
-};
 
 class App extends React.Component {
-  state = { CurrentPage: "login" };
-
-  navigateTo = (page) => {
-    // if (this.props.isLoggedIn){
-    this.setState({ CurrentPage: page });
-    // } else{
-    //   this.setState({ CurrentPage: "login" });  
-    // }
-  };
-
   render() {
-    const { CurrentPage } = this.state;
-    const Page = PAGES[CurrentPage];
-
     return<>
       {
-        this.props.isLoggedIn && <Header navigateTo={this.navigateTo}/>
+        this.props.isLoggedIn && <Header connect/>
       }
       <main>
         <section>
-        <Page navigateTo={this.navigateTo} />
+          <Switch>
+            <Route exact path ='/' component ={LoginWithConnect}/>
+            <PrivateRoute  path ='/map' component ={Map}/>
+            <PrivateRoute path="/profile" component={ProfileWithConnect} />
+            <Route exact path ='/registration' component ={RegistrationWithConnect}/>
+          </Switch>
         </section>
       </main>
       </>
@@ -49,4 +37,6 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool,
 };
 
-export default withAuth(App);
+export default connect(
+  state => ({isLoggedIn: state.auth.isLoggedIn})
+)(App);

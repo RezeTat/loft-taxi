@@ -11,7 +11,7 @@ describe("Map", () => {
   it("renders correctly", () => {
     const { getByTestId } = render(<Map />);
     expect(mapbox.Map).toHaveBeenCalledWith({
-      center:[55.757, 37.624], 
+      center:[37.61778, 55.75583], 
       container: getByTestId('map'),
       style:"mapbox://styles/rezetat/ckc93aol83t7q1ipioyust4u8",
       zoom: 10,

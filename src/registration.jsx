@@ -1,23 +1,33 @@
 import React from 'react'
+import {connect} from 'react-redux';
 import './registration.css'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import {registration} from './actions'
+
+
 
 
 export const Registration = (props)=>{
-
+    const [userInfo, setUserInfo] = React.useState({
+		email: "",
+        password: "",
+        name: "",
+        surname: ""
+    });
+    
+    const onChangeInput = (e) => {
+        const input = e.target;
+        setUserInfo({...userInfo, [input.name]: input.value })
+    };
     const handleSubmit=e=> {
-        const { navigateTo } = props;
         e.preventDefault();
-        navigateTo('map');
+        props.registration(userInfo.email,userInfo.password,userInfo.name,userInfo.surname);
     };
-    const goToLogin=e=> {
-        const {navigateTo} = props;
-        e.preventDefault();
-        navigateTo("login");
-    };
+
         return <>
             <div className='registration'>
                     <div className="formBox">
@@ -29,7 +39,7 @@ export const Registration = (props)=>{
                         <Grid container justify="flex-start">
                             <Grid item>
                                 <p>Уже зарегистрирован? 
-                                    <Link href="#" variant="body2" onClick={goToLogin}>
+                                    <Link href="#" variant="body2" to='/'>
                                     Войти
                                     </Link>
                                 </p>
@@ -44,32 +54,39 @@ export const Registration = (props)=>{
                                     label="Адрес электронной почты"
                                     name="email"
                                     autoComplete="email"
+                                    autoFocus
+                                    value={userInfo.email} 
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                             <TextField
-                                autoComplete="fname"
-                                name="firstName"
+                                autoComplete="name"
+                                name="name"
                                 required
                                 fullWidth
-                                id="firstName"
+                                id="name"
                                 label="Имя"
                                 autoFocus
+                                value={userInfo.name} 
+                                onChange={onChangeInput}
                             />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                             <TextField
                                 required
                                 fullWidth
-                                id="lastName"
+                                id="surname"
                                 label="Фамилия"
-                                name="lastName"
-                                autoComplete="lname"
+                                name="surname"
+                                autoComplete="surname"
+                                autoFocus
+                                value={userInfo.surname} 
+                                onChange={onChangeInput}
                             />
                             </Grid>
                             <Grid item xs={12}>
                             <TextField
-                                
                                 required
                                 fullWidth
                                 name="password"
@@ -77,6 +94,10 @@ export const Registration = (props)=>{
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                autoFocus
+                                value={userInfo.password} 
+                                onChange={onChangeInput}
+
                             />
                             </Grid>
                             
@@ -96,3 +117,7 @@ export const Registration = (props)=>{
             </>
 };
 
+export const RegistrationWithConnect= connect(
+    null,
+    { registration }
+)(Registration);
