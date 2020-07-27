@@ -22,15 +22,14 @@ export const Profile=(props)=>{
         cvc: "",
         token:  ""
     });
-
-        
+   
     const onChangeInput = (e) => {
         const input = e.target;
-        setCardInfo({...cardInfo, [input.name]: [input.value] })
+        setCardInfo({...cardInfo, [input.name]: input.value })
     };
     const handleSubmit=e=> {
         e.preventDefault();
-        profile(cardInfo.cardNumber,cardInfo.expiryDate,cardInfo.cardName,cardInfo.cvc,cardInfo.token );
+        props.profile(cardInfo.cardNumber,cardInfo.expiryDate,cardInfo.cardName,cardInfo.cvc,cardInfo.token );
     };
         return(
         <>
@@ -132,5 +131,5 @@ const mapStateToProps = (state) => ({
 
 export const ProfileWithConnect = connect(
     mapStateToProps,
-    {logOut}
+    {logOut,profile}
 )(Profile)

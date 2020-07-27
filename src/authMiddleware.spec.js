@@ -8,7 +8,7 @@ jest.mock("./api", () => ({ serverLogIn: jest.fn(() => true) }));
 describe("auth", () => {
   describe("#AUTHENTICATE", () => {
       it("authenticates through api", async () => {
-        const dispatch = jest.fn();
+        const dispatch = jest.fn()
 
         await auth({ dispatch })()(
           authenticate("testlogin", "testpassword")

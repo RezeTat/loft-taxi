@@ -21,7 +21,7 @@ export const Registration = (props)=>{
     
     const onChangeInput = (e) => {
         const input = e.target;
-        setUserInfo({...userInfo, [input.name]: [input.value] })
+        setUserInfo({...userInfo, [input.name]: input.value })
     };
     const handleSubmit=e=> {
         e.preventDefault();

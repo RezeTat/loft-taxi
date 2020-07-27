@@ -4,7 +4,7 @@ import {authenticate} from './actions'
 import PropTypes from "prop-types";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {Link} from 'react-router-dom';
+import {Link} from '@material-ui/core/Link';
 import './login.css'
 
 

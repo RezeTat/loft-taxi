@@ -1,4 +1,4 @@
-// import { logIn } from "./actions";
+import { logIn } from "./actions";
 import {serverCard} from './api'
 import {PROFILE} from './actions'
 
@@ -8,7 +8,7 @@ export const profile = (store) => (next) => async (action) => {
     const token = store.getState().token;
     const success = await serverCard(cardNumber,expiryDate,cardName,cvc,token)
     if(success){
-      store.dispatch(action);
+      store.dispatch(logIn(token));
       localStorage.setItem('card',JSON.stringify({
         cardNumber,
         expiryDate,
